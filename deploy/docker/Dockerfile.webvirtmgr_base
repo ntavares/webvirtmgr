@@ -1,0 +1,18 @@
+#
+# docker build --no-cache=true --rm=true -t webvirtmgr_base -f Dockerfile.webvirtmgr_base .
+#
+# Just a simple base centos, prepared to run django. This is meant to speed up building of webvirtmgr
+#
+
+FROM centos:6
+
+ENV VERSION 0.1
+
+MAINTAINER nuno.tavares@synrix.com
+
+RUN yum -y update && \
+    yum -y install http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm && \
+    yum -y install git python-pip libvirt-python libxml2-python python-websockify \
+        supervisor nginx && \
+    yum clean all
+
